@@ -1,5 +1,5 @@
 from bookshelf.models import Book
 
-books = Book.objects.get()
-books.delete()
-books.objects.all()
+book = Book.objects.get()
+book.delete()
+book.objects.all()
