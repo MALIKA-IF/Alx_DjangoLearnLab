@@ -1,5 +1,5 @@
 from bookshelf.models import Book
 
-books = Book.objects.filter(title = "1984")
-books.update(title = "Nineteen Eighty-Four")
+books = Book.objects.filter(book.title = "1984")
+books.update(book.title = "Nineteen Eighty-Four")
 books.save()
