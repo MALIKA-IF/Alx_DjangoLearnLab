@@ -1,3 +1,3 @@
 from bookshelf.models import Book
 
-books = Book.objects.all()
+books = Book.objects.get("1984")
