@@ -1,11 +1,14 @@
 from .models import Author, Book, Librarian, Library
 
-Library.objects.get(name='Library_name')
+author = Author.objects.get(name="Author Name")
 
+books_author = author.books.all()
    
+library = Library.objects.get(name="name_Library")
+books_library = library.books.all()   
 
-for p in Library.objects.raw("SELECT books FROM Library "):
-    print(p)    
+book = Book.objects.get(title="Book_title")
 
-for p in Librarian.objects.raw("DELETE name FROM Librarion WHERE Library=''"):
-    print(p)       
+library = book.library
+librarian = library.librarian
+print(librarian.name)    
