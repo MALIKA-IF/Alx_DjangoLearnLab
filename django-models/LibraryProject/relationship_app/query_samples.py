@@ -1,7 +1,8 @@
 from .models import Author, Book, Librarian, Library
 
-for p in Book.objects.raw("SELECT * FROM Book WHERE Author= ''"):
-    print(p)
+books = Book.objects.get(Library='Library_name')
+books.all()
+   
 
 for p in Library.objects.raw("SELECT books FROM Library "):
     print(p)    
