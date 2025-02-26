@@ -5,7 +5,7 @@ author=Author.objects.create(name="Author_name")
 books_author=author.books.all()
    
 #List all books in a library. 
-lib=Library.objects.create(name="library_name")
+lib=Library.objects.get(name="library_name")
 books_library = lib.library.all()   
 
 #Retrieve the librarian for a library
