@@ -1,8 +1,11 @@
-from .models import Author, Book, Librarian, Library
+from .models import Author
+from .models import Library
+from .models import Book
+from .models import Librarian
 
 #List all books in a library. 
-lib=Book.objects.get(name='library_name')
-lib.library.all()   
+Library.objects.get(name='library_name')
+#lib.library.all()   
 
 #Query all books by a specific author
 author=Author.objects.get(name='Author_name')
