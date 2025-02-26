@@ -1,13 +1,14 @@
 from .models import Author, Book, Librarian, Library
 
-author=Author.objects.get(name="Author_name")
+#Query all books by a specific author
+author=Author.objects.create(name="Author_name")
 books_author=author.books.all()
    
-library=Library.objects.get(name="library_name")
-books_library = library.books.all()   
+#List all books in a library. 
+lib=Library.objects.create(name="library_name")
+books_library = lib.library.all()   
 
+#Retrieve the librarian for a library
 
-book=Book.objects.get(title="Book_title")
-library=book.library
-librarian=library.librarian
-print(librarian.name)    
+lib2=Librarian.objects.create(name="Librarian_name")    
+lib2.librarian.all()
