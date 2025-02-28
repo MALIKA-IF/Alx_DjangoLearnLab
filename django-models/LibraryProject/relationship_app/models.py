@@ -25,5 +25,4 @@ class Librarian(models.Model):
     name=models.CharField(max_length=100)
     library=models.OneToOneField(Library,on_delete=models.CASCADE,related_name='librarian')
 
-lib2=Librarian.objects.create(name="Librarian_name")    
-lib2.librarian.all()
+
