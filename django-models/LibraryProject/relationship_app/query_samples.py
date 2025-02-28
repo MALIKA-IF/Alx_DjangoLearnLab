@@ -1,7 +1,5 @@
-from .models import Author
-from .models import Library
-from .models import Book
-from .models import Librarian
+from relationship_app.models import Author, Library, Book, Librarian
+
 
 #List all books in a library. 
 Library.objects.get(name='library_name')
