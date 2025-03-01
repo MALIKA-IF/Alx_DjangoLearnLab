@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django.core.signals import setting_changed
 
 
 # Create your models here.
@@ -24,5 +26,21 @@ class Library(models.Model):
 class Librarian(models.Model):
     name=models.CharField(max_length=100)
     library=models.OneToOneField(Library,on_delete=models.CASCADE,related_name='librarian')
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE,related_name="user")
+    STATUS_Admin = ""
+    STATUS_Librarian = ""
+    STATUS_Member = ""
+    STATUS_CHOICES = [
+        (STATUS_Admin, 'Admin'),
+        (STATUS_Librarian, 'Librarian'),
+        (STATUS_Member, 'Member'),
+    ]
+    role = models.CharField(choices=STATUS_CHOICES)
+
+setting_changed.connect(UserProfile)
+
+
 
 
