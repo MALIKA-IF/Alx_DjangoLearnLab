@@ -12,7 +12,7 @@ urlpatterns = [
     path("Register/", Register.as_view(), name='register'),
     path("logout/", LogoutView.as_view(), name='logout'),
     path("add_book/",views.permission_required, name ="addBook")
-    path("edit_book"/,views.permission_required, name ="editBook")
+    path("edit_book/",views.permission_required, name ="editBook")
     path("delete_book/",views.permission_required, name ="deleteBook")
 
 ]
