@@ -8,6 +8,7 @@ from django.views.generic import CreateView
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.decorators import permission_required
 
 
 
@@ -41,3 +42,7 @@ def librarian(request):
 def Member(request):
 
     return render(request,'relationship_app/member_view.html')
+
+permission_required("relationship_app.can_add_book")
+permission_required("relationship_app.can_change_book")
+permission_required("relationship_app.can_delete_book")
