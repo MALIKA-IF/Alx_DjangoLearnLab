@@ -27,14 +27,14 @@ class Register(CreateView):
     success_url = reverse_lazy('login')
     template_name = "relationship_app/register.html"
 
-def Admin(request):
+class Admin():
     if user.role == "Admin":
       pass
 
-def Librarian(request):
+class Librarian():
     if user.role == "Librarian":
       pass
 
-def Member(request):
+class Member():
     if user.role == "Member":
       pass
