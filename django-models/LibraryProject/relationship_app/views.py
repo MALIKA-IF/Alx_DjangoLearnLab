@@ -7,11 +7,12 @@ from django.views.generic.detail import DetailView
 from django.views.generic import CreateView
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
+from django.contrib.auth.decorators import user_passes_test
 
 
 
 # Create your views here.
-user=UserProfile()
+
 Book.objects.all()
 
 def list_books(request):
@@ -27,11 +28,13 @@ class Register(CreateView):
     success_url = reverse_lazy('login')
     template_name = "relationship_app/register.html"
 
+@user_passes_test()    
+
 def Admin(request):
 
     return render(request,'relationship_app/admin_view.html')
 
-def Library(request):
+def librarian(request):
 
     return render(request,'relationship_app/librarian_view.html')
 
