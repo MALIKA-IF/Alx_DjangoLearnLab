@@ -7,6 +7,7 @@
 </head>
 <body>
     <h1>Books Available:</h1>
+    {% if perms.relationship_app.add %}
     <ul>
         {% for book in books %}
         <li>{{ book.title }} by {{ book.author.name }}</li>

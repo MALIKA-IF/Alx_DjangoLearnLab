@@ -27,3 +27,14 @@ class Register(CreateView):
     success_url = reverse_lazy('login')
     template_name = "relationship_app/register.html"
 
+def Admin(request):
+
+    return render(request,'relationship_app/admin_view.html')
+
+def Library(request):
+
+    return render(request,'relationship_app/librarian_view.html')
+
+def Member(request):
+
+    return render(request,'relationship_app/member_view.html')
