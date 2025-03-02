@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import AbstractUser
 from django.core.signals import setting_changed
 
 
@@ -50,6 +50,11 @@ class UserProfile(models.Model):
     role = models.CharField(max_length=20 ,choices=STATUS_CHOICES)
 
 setting_changed.connect(UserProfile)
+
+class CustomUser(AbstractUser):
+    date_of_birth=models.DateField()
+    profile_photo=models.ImageField()
+                 
 
 
 
