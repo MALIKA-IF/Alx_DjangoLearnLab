@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Book
 from .models import Library
+from .models import UserProfile
 from django.views.generic.detail import DetailView
 from django.views.generic import CreateView
 from django.contrib.auth.forms import UserCreationForm
@@ -10,6 +11,7 @@ from django.urls import reverse_lazy
 
 
 # Create your views here.
+user=UserProfile()
 Book.objects.all()
 
 def list_books(request):
@@ -25,5 +27,14 @@ class Register(CreateView):
     success_url = reverse_lazy('login')
     template_name = "relationship_app/register.html"
 
+def admin_view(request):
+    if user.role == "Admin":
+      pass
 
-    
+def librarian_view(request):
+    if user.role == "Librarian":
+      pass
+
+def member_view(request):
+    if user.role == "Member":
+      pass

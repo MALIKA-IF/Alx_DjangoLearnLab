@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractBaseUser
 from django.core.signals import setting_changed
 
 
@@ -27,7 +28,7 @@ class Librarian(models.Model):
     name=models.CharField(max_length=100)
     library=models.OneToOneField(Library,on_delete=models.CASCADE,related_name='librarian')
 
-class UserProfile(models.Model):
+class UserProfile(AbstractBaseUser):
     user = models.OneToOneField(User,on_delete=models.CASCADE,related_name="user")
     STATUS_Admin = ""
     STATUS_Librarian = ""
@@ -37,7 +38,7 @@ class UserProfile(models.Model):
         (STATUS_Librarian, 'Librarian'),
         (STATUS_Member, 'Member'),
     ]
-    role = models.CharField(choices=STATUS_CHOICES)
+    role = models.CharField(max_length=20 ,choices=STATUS_CHOICES)
 
 setting_changed.connect(UserProfile)
 
