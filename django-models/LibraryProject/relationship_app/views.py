@@ -29,7 +29,7 @@ class Register(CreateView):
     success_url = reverse_lazy('login')
     template_name = "relationship_app/register.html"
 
-@user_passes_test()    
+#user_passes_test()    
 
 def Admin(request):
 
@@ -43,6 +43,9 @@ def Member(request):
 
     return render(request,'relationship_app/member_view.html')
 
-permission_required("relationship_app.can_add_book")
-permission_required("relationship_app.can_change_book")
+#permission_required("relationship_app.can_add_book")
+#permission_required("relationship_app.can_change_book")
 permission_required("relationship_app.can_delete_book")
+permission_required("relationship_app.can_create_book")
+permission_required("relationship_app.can_view_book")
+permission_required("relationship_app.can_edit_book")
