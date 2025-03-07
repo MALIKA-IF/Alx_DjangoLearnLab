@@ -45,7 +45,7 @@ def Member(request):
 
 #permission_required("relationship_app.can_add_book")
 #permission_required("relationship_app.can_change_book")
-permission_required("relationship_app.can_delete_book")
-permission_required("relationship_app.can_create_book")
-permission_required("relationship_app.can_view_book")
-permission_required("relationship_app.can_edit_book")
+permission_required("relationship_app.can_delete_book",raise_exception=True)
+permission_required("relationship_app.can_create_book",raise_exception=True)
+permission_required("relationship_app.can_view_book",raise_exception=True)
+permission_required("relationship_app.can_edit_book",raise_exception=True)
