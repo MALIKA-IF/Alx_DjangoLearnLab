@@ -5,10 +5,9 @@ from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
-from django.views.generic import DetailView
-from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import profile
+from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
+from .models import profile,Post
+from django.views.generic import DetailView,ListView,DeleteView,CreateView,UpdateView
 
 # Create your views here.
 
@@ -45,3 +44,27 @@ class profile(LoginRequiredMixin, DetailView):
     model = profile
     template_name = 'profile.html'  # Create this template
     context_object_name = 'profile'
+
+
+class PostDetailView(DetailView):
+
+  model = Post
+  template_name = 'blog/Post_detail.html'
+
+class PostListView(ListView):
+    model = Post
+    template_name = "blog/Post_list.html" 
+
+class PostCreateView(LoginRequiredMixin, CreateView):
+    model = Post
+    template_name = "blog/create_Post.html"
+    fields = ["title", "content"]
+
+class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Post
+    template_name = "update_Post.html"
+    fields = ["title", "content"]    
+
+class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Post
+    template_name = "delete_Post.html"    
