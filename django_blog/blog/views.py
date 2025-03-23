@@ -31,7 +31,7 @@ def Login_View(request):
 class RegistrationView(CreateView):
     form_class = UserCreationForm
     success_url = reverse_lazy('login')
-    template_name = 'registration.html'
+    template_name = 'register.html'
 
 def register(request):
     if request.method == "POST":
