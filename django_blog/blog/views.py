@@ -33,6 +33,13 @@ class RegistrationView(CreateView):
     success_url = reverse_lazy('login')
     template_name = 'registration.html'
 
+def register(request):
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+
+
 
 class profile(LoginRequiredMixin, DetailView):
     model = profile
