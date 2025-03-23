@@ -4,6 +4,8 @@ from django.contrib.auth import logout,login ,authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.contrib.auth.models import User
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
 
 # Create your views here.
 
@@ -13,7 +15,7 @@ def index(request):
 def logout_view(request):
     logout(request)
 
-def login_view(request):
+def Login_View(request):
     username = request.POST["username"]
     password = request.POST["password"]
     user = authenticate(request, username=username, password=password)
@@ -23,12 +25,9 @@ def login_view(request):
     else:
         return "login faild"
     
-def RegistrationForm(request):
-
-    email = forms.EmailField()
-
-    class Meta:
-        model=User
-        fields=['title','content','published_date','author']
+class RegistrationView(CreateView):
+    form_class = UserCreationForm
+    success_url = reverse_lazy('login')
+    template_name = 'registration.html'
 
 
