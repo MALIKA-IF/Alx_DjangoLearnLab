@@ -54,7 +54,7 @@ class PostDetailView(DetailView):
 
      def PostDetail(request, idPost):
         post = get_object_or_404(Post, id=idPost)
-        return render(request, 'blog/detail.html', {'post': post})
+        return render(request, 'blog/post_detail.html', {'post': post})
 
 
 class PostListView(ListView):
@@ -63,11 +63,11 @@ class PostListView(ListView):
 
     def blog_list(request):
        posts = Post.objects.all()
-       return render(request, 'blog/listing.html', {'posts': posts})
+       return render(request, 'blog/post_list.html', {'posts': posts})
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    template_name = "blog/creating.html"
+    template_name = "blog/post_form.html"
     fields = ["title", "content"]
 
     def blog_create(request):
@@ -93,7 +93,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
-    template_name = "deletion.html"    
-    def blog_delete(request, Postid):
+    template_name = "post_delete.html"    
+    def Postdelete(request, Postid):
         post = get_object_or_404(Post, id=Postid)
         post.delete()

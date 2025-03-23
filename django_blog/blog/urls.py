@@ -9,11 +9,11 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(template_name='logout.html'), name='logout'),
     path('register/', RegistrationView.as_view(template_name='register.html'), name='register'),
     path('profile/', profile.as_view(template_name='profile.html'), name='profile'),
-    path('/post/', PostListView.as_view(template_name='listing.html'), name="PostList"),
-    path('/post/new/', PostCreateView.as_view(template_name='creating.html'), name="NewPost"),
-    path('/post/<int:pk>/', PostDetailView.as_view(template_name='viewing.html'), name="DetailPost"),
-    path('/post/<int:pk>/update/', PostUpdateView.as_view(template_name='editing.html'), name="UpdatPost"),
-    path('/post/<int:pk>/delete/', PostDeleteView.as_view(template_name='deletion.html'), name="DeletePost"),
+    path('/post/', PostListView.as_view(template_name='post_list.html'), name="PostList"),
+    path('/post/new/', PostCreateView.as_view(template_name='post_form.html'), name="NewPost"),
+    path('/post/<int:pk>/', PostDetailView.as_view(template_name='post_detail.html'), name="DetailPost"),
+    path('/post/<int:pk>/update/', PostUpdateView.as_view(template_name='post_list.html'), name="UpdatPost"),
+    path('/post/<int:pk>/delete/', PostDeleteView.as_view(template_name='post_delete.html'), name="DeletePost"),
     
 
 
