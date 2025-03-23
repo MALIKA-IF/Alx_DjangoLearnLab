@@ -9,6 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from .models import profile,Post
 from django.views.generic import DetailView,ListView,DeleteView,CreateView,UpdateView
 from .forms import PostForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
