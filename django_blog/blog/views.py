@@ -49,22 +49,22 @@ class profile(LoginRequiredMixin, DetailView):
 class PostDetailView(DetailView):
 
   model = Post
-  template_name = 'blog/Post_detail.html'
+  template_name = 'blog/viewing.html'
 
 class PostListView(ListView):
     model = Post
-    template_name = "blog/Post_list.html" 
+    template_name = "blog/listing.html" 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    template_name = "blog/create_Post.html"
+    template_name = "blog/creating.html"
     fields = ["title", "content"]
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
-    template_name = "update_Post.html"
+    template_name = "editing.html"
     fields = ["title", "content"]    
 
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
-    template_name = "delete_Post.html"    
+    template_name = "deleting.html"    
