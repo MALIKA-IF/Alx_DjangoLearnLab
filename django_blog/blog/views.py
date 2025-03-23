@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth import logout,login ,authenticate
 from django.contrib.auth.forms import UserCreationForm
@@ -8,6 +8,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from .models import profile,Post
 from django.views.generic import DetailView,ListView,DeleteView,CreateView,UpdateView
+from .forms import PostForm
 
 # Create your views here.
 
@@ -42,29 +43,57 @@ def register(request):
 
 class profile(LoginRequiredMixin, DetailView):
     model = profile
-    template_name = 'profile.html'  # Create this template
+    template_name = 'profile.html'  
     context_object_name = 'profile'
 
 
 class PostDetailView(DetailView):
 
-  model = Post
-  template_name = 'blog/viewing.html'
+     model = Post
+     template_name = 'blog/viewing.html'
+
+     def PostDetail(request, idPost):
+        post = get_object_or_404(Post, id=idPost)
+        return render(request, 'blog/detail.html', {'post': post})
+
 
 class PostListView(ListView):
     model = Post
     template_name = "blog/listing.html" 
+
+    def blog_list(request):
+       posts = Post.objects.all()
+       return render(request, 'blog/listing.html', {'posts': posts})
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     template_name = "blog/creating.html"
     fields = ["title", "content"]
 
+    def blog_create(request):
+        if request.method == 'POST':
+           form = PostForm(request.POST)
+           if form.is_valid():
+            form.save()
+            
+
+
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
     template_name = "editing.html"
-    fields = ["title", "content"]    
+    fields = ["title", "content"]   
+
+    def Post_edit(request, Postid):
+             post = get_object_or_404(Post, id=Postid)
+             if request.method == 'POST':
+                form = PostForm(request.POST)
+                if form.is_valid():
+                   form.save()
+           
 
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
     template_name = "deleting.html"    
+    def blog_delete(request, Postid):
+        post = get_object_or_404(Post, id=Postid)
+        post.delete()
