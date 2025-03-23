@@ -13,7 +13,7 @@ urlpatterns = [
     path('/post/new/', PostCreateView.as_view(template_name='creating.html'), name="NewPost"),
     path('/post/<int:pk>/', PostDetailView.as_view(template_name='viewing.html'), name="DetailPost"),
     path('/post/<int:pk>/update/', PostUpdateView.as_view(template_name='editing.html'), name="UpdatPost"),
-    path('/post/<int:pk>/delete/', PostDeleteView.as_view(template_name='deleting.html'), name="DeletePost"),
+    path('/post/<int:pk>/delete/', PostDeleteView.as_view(template_name='deletion.html'), name="DeletePost"),
     
 
 

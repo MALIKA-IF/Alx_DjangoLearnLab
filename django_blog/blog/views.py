@@ -93,7 +93,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
-    template_name = "deleting.html"    
+    template_name = "deletion.html"    
     def blog_delete(request, Postid):
         post = get_object_or_404(Post, id=Postid)
         post.delete()
