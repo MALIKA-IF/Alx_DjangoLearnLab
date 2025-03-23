@@ -6,6 +6,9 @@ from django import forms
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
+from django.views.generic import DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .models import profile
 
 # Create your views here.
 
@@ -31,3 +34,7 @@ class RegistrationView(CreateView):
     template_name = 'registration.html'
 
 
+class profile(LoginRequiredMixin, DetailView):
+    model = profile
+    template_name = 'profile.html'  # Create this template
+    context_object_name = 'profile'
