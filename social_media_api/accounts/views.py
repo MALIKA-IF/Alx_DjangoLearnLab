@@ -3,6 +3,7 @@ from django.contrib.auth import login,authenticate
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.contrib.auth.forms import UserCreationForm
+from .serializers import CustomSerializer
 
 # Create your views here.
 
@@ -18,10 +19,12 @@ def Login_View(request):
         return "login faild"    
     
 class RegistrationView(CreateView):
+    
     form_class = UserCreationForm
     success_url = reverse_lazy('login')
 
     def register(request):
+        serializer = CustomSerializer(data=request.data)
         if request.method == "POST":
             form = UserCreationForm(request.POST)
         if form.is_valid():
