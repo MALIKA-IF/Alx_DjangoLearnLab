@@ -29,3 +29,6 @@ class register(CreateView):
             form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()    
+
+class follow_user():
+    pass          
