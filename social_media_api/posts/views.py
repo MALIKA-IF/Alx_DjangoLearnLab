@@ -31,16 +31,16 @@ class FeedApiView(generics.GenericAPIView):
 class LikePost(generics.GenericAPIView):
     permission_classes=permissions.IsAuthenticated
 
-    def like(self,pk,request):
+    def like(self,request,pk):
 
-        post=generics.get_object_or_404(Post,pk=pk)    
+        post=generics.get_object_or_404(Post, pk=pk)    
         if Like.objects.get_or_create(user=request.user, post=post):
             return Notification.objects.create
     
 class unLikePost(generics.GenericAPIView):
     permission_classes=permissions.IsAuthenticated
 
-    def unlike(self,pk,request,):
+    def unlike(self,request,pk):
 
         post=generics.get_object_or_404(Post,pk=pk)    
         post1=Like.objects.get_or_create(user=request.user, post=post)
