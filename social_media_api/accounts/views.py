@@ -4,8 +4,8 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.contrib.auth.forms import UserCreationForm
 from .serializers import CustomSerializer
-from rest_framework import viewsets,generics
-from rest_framework.permissions import IsAuthenticated
+from rest_framework import viewsets,generics,permissions
+
 from .models import CustomUser
 
 # Create your views here.
@@ -38,7 +38,7 @@ class follow_user():
 
 class FollowApiView(generics.GenericAPIView):
     serializer_class = CustomSerializer
-    permission_classes=[IsAuthenticated]
+    permission_classes=permissions.IsAuthenticated
 
     def get(self, request, ):
         customU = CustomUser.objects.all()
