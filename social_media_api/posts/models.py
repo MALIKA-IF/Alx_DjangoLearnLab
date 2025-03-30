@@ -17,3 +17,7 @@ class Comment(models.Model):
     content=models.TextField()
     created_at=models.DateTimeField()
     updated_at=models.DateTimeField()
+
+class Like(models.Model):
+    post=models.ForeignKey(Post,on_delete=models.CASCADE)
+    authorL=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name='authorLike')
