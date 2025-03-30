@@ -33,8 +33,8 @@ class LikePost(generics.GenericAPIView):
 
     def like(self,pk,request):
 
-        like=generics.get_object_or_404(Post,pk=pk)    
-        if Like.objects.get_or_create(user=request.user, post=like):
+        post=generics.get_object_or_404(Post,pk=pk)    
+        if Like.objects.get_or_create(user=request.user, post=post):
             return Notification.objects.create
     
 class unLikePost(generics.GenericAPIView):
@@ -42,9 +42,9 @@ class unLikePost(generics.GenericAPIView):
 
     def unlike(self,pk,request,):
 
-        unlike=generics.get_object_or_404(Post,pk=pk)    
-        post=Like.objects.get_or_create(user=request.user, post=unlike)
-        if not post:
+        post=generics.get_object_or_404(Post,pk=pk)    
+        post1=Like.objects.get_or_create(user=request.user, post=post)
+        if not post1:
             return Response({"You unliked this post."})
     
     
