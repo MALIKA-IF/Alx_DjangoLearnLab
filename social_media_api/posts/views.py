@@ -3,6 +3,7 @@ from rest_framework import viewsets,generics,permissions
 from .models import Post,Comment
 from .serializers import Postserializer,Commentserializer
 from accounts.models import CustomUser
+from notifications.models import Notification
 from rest_framework import generics,permissions
 from .models import Like
 from rest_framework.response import Response
@@ -30,11 +31,11 @@ class FeedApiView(generics.GenericAPIView):
 class LikePost(generics.GenericAPIView):
     permission_classes=permissions.IsAuthenticated
 
-    def like(self,pk,request,):
+    def like(self,pk,request):
 
         like=generics.get_object_or_404(Post,pk=pk)    
-        if Like.objects.filter(user=request.user, post=like).exists():
-            return Response({"You liked this post."})
+        if Like.objects.get_or_create(user=request.user, post=like):
+            return Notification.objects.create
     
 class unLikePost(generics.GenericAPIView):
     permission_classes=permissions.IsAuthenticated
@@ -42,7 +43,7 @@ class unLikePost(generics.GenericAPIView):
     def unlike(self,pk,request,):
 
         unlike=generics.get_object_or_404(Post,pk=pk)    
-        post=Like.objects.filter(user=request.user, post=unlike).exists()
+        post=Like.objects.get_or_create(user=request.user, post=unlike)
         if not post:
             return Response({"You unliked this post."})
     
