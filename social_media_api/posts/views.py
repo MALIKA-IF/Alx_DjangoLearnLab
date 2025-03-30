@@ -19,10 +19,10 @@ class FeedApiView(generics.GenericAPIView):
     permission_classes=permissions.IsAuthenticated
 
     def get(self):
-        following_user=Post.objects.filter(author__in=following_user).order_by('-created_at')
-        following = following_user
+        following_users=Post.objects.filter(author__in=following_users).order_by('-created_at')
+        following = following_users
         following.all()
-        return following_user
+        return following_users
     
 
     
