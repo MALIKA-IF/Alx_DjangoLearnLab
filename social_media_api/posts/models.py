@@ -20,4 +20,4 @@ class Comment(models.Model):
 
 class Like(models.Model):
     post=models.ForeignKey(Post,on_delete=models.CASCADE)
-    authorL=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name='authorLike')
+    user=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name='user')
