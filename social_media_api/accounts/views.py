@@ -44,3 +44,12 @@ class FollowApiView(generics.GenericAPIView):
         customU = CustomUser.objects.all()
         serializer = self.get_serializer(customU, many=True)
         return Response(serializer.data)
+    
+class unFollowApiView(generics.GenericAPIView):
+    serializer_class = CustomSerializer
+    permission_classes=permissions.IsAuthenticated
+
+    def get(self, request, ):
+        customU = CustomUser.objects.all()
+        serializer = self.get_serializer(customU, many=True)
+        return Response(serializer.data)    

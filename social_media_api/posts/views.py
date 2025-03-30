@@ -3,6 +3,9 @@ from rest_framework import viewsets,generics,permissions
 from .models import Post,Comment
 from .serializers import Postserializer,Commentserializer
 from accounts.models import CustomUser
+from rest_framework import generics,permissions
+from .models import Like
+from rest_framework.response import Response
 
 
 # Create your views here.
@@ -24,7 +27,25 @@ class FeedApiView(generics.GenericAPIView):
         following.all()
         return following_users
     
+class LikePost(generics.GenericAPIView):
+    permission_classes=permissions.IsAuthenticated
 
+    def like(self,pk,request,):
+
+        like=generics.get_object_or_404(Post,pk=pk)    
+        if Like.objects.filter(user=request.user, post=like).exists():
+            return Response({"You liked this post."})
+    
+class unLikePost(generics.GenericAPIView):
+    permission_classes=permissions.IsAuthenticated
+
+    def unlike(self,pk,request,):
+
+        unlike=generics.get_object_or_404(Post,pk=pk)    
+        post=Like.objects.filter(user=request.user, post=unlike).exists()
+        if not post:
+            return Response({"You unliked this post."})
+    
     
     
     
